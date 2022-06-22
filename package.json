@@ -4,9 +4,8 @@
    "description": "",
    "main": "index.js",
    "scripts": {
-      "build": "webpack --mode=production",
-      "watch": "webpack --watch --mode=development",
-      "start": "webpack serve --mode=development --open"
+      "build": "webpack",
+      "watch": "webpack --watch"
    },
    "author": "Viacheslav",
    "license": "ISC",
