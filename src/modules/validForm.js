@@ -13,22 +13,22 @@ const validForm = () => {
    })
    textInputs.forEach((textInput) => {
       textInput.addEventListener('input', (event) => {
-         event.target.value = event.target.value.replace(/[^а-яА-Я- ]/, "")
+         event.target.value = event.target.value.replace(/[^а-яА-Я\- ]/, "")
          console.log(event.target.value)
       })
 
    })
    emailInputs.forEach((emailInput) => {
       emailInput.addEventListener('input', (event) => {
-         event.target.value = event.target.value.replace(/[^a-zA-Z0-9@-_.!~*']/, "")
+         event.target.value = event.target.value.replace(/[^a-zA-Z0-9@\-_.!~*']/, "")
       })
    })
    messageInput.addEventListener('input', (event) => {
-      event.target.value = event.target.value.replace(/[^а-яА-Я- ]/, "")
+      event.target.value = event.target.value.replace(/[^а-яА-Я\- ]/, "")
    })
    phoneInputs.forEach((phoneInput) => {
       phoneInput.addEventListener('input', (event) => {
-         event.target.value = event.target.value.replace(/[^\d()-]/, "")
+         event.target.value = event.target.value.replace(/[^\d()\-]/, "")
       })
    })
 }

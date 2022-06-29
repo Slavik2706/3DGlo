@@ -1,7 +1,6 @@
 const modal = () => {
    const modal = document.querySelector('.popup')
    const buttons = document.querySelectorAll('.popup-btn')
-   const closeBtn = modal.querySelector('.popup-close')
 
    const windowInnerWidth = window.innerWidth
    let opacity = 0
@@ -25,16 +24,18 @@ const modal = () => {
       })
    })
 
-   closeBtn.addEventListener('click', () => {
-      let timerClose = setInterval(function () {
-         if (opacity > 0) {
-            opacity -= 0.05
-            modal.style.opacity = opacity;
-         } else {
-            clearInterval(timerClose);
-            modal.style.display = 'none'
-         }
-      }, 30)
+   modal.addEventListener('click', (e) => {
+      if (!e.target.closest('.popup-content') || e.target.classList.contains('popup-close')) {
+         let timerClose = setInterval(function () {
+            if (opacity > 0) {
+               opacity -= 0.05
+               modal.style.opacity = opacity;
+            } else {
+               clearInterval(timerClose);
+               modal.style.display = 'none'
+            }
+         }, 30)
+      }
    })
 }
 
