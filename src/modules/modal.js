@@ -1,3 +1,5 @@
+import { animate } from './helpers'
+
 const modal = () => {
    const modal = document.querySelector('.popup')
    const buttons = document.querySelectorAll('.popup-btn')
@@ -12,29 +14,33 @@ const modal = () => {
          } else {
             modal.style.opacity = opacity;
             modal.style.display = 'block'
-            let timerOpen = setInterval(function () {
-               if (opacity <= 1) {
-                  opacity += 0.05
-                  modal.style.opacity = opacity;
-               } else {
-                  clearInterval(timerOpen);
+            animate({
+               duration: 1000,
+               timing(timeFraction) {
+                  return timeFraction;
+               },
+               draw(progress) {
+                  modal.style.opacity = progress
                }
-            }, 30)
+            })
          }
       })
    })
 
    modal.addEventListener('click', (e) => {
       if (!e.target.closest('.popup-content') || e.target.classList.contains('popup-close')) {
-         let timerClose = setInterval(function () {
-            if (opacity > 0) {
-               opacity -= 0.05
-               modal.style.opacity = opacity;
-            } else {
-               clearInterval(timerClose);
-               modal.style.display = 'none'
+         animate({
+            duration: 1000,
+            timing(timeFraction) {
+               return timeFraction;
+            },
+            draw(progress) {
+               modal.style.opacity = 1 - progress
             }
-         }, 30)
+         })
+         setTimeout(() => {
+            modal.style.display = 'none'
+         }, 1000)
       }
    })
 }
