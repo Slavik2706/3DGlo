@@ -24,11 +24,11 @@ const validForm = () => {
       })
    })
    messageInput.addEventListener('input', (event) => {
-      event.target.value = event.target.value.replace(/[^а-яА-Я\- ]/, "")
+      event.target.value = event.target.value.replace(/[^а-яА-Я\d()\-,.!? ]/, "")
    })
    phoneInputs.forEach((phoneInput) => {
       phoneInput.addEventListener('input', (event) => {
-         event.target.value = event.target.value.replace(/[^\d()\-]/, "")
+         event.target.value = event.target.value.replace(/[^\d()\-\+]/, "")
       })
    })
 }
