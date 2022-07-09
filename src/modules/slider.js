@@ -12,6 +12,9 @@ const slider = () => {
       const li = document.createElement('li')
       li.classList.add('dot')
       slidesList.append(li)
+      if (i === 0) {
+         li.classList.add('dot-active')
+      }
    }
 
    const dots = document.querySelectorAll('.dot')
@@ -36,7 +39,7 @@ const slider = () => {
       nextSlide(slides, currentSlide, 'portfolio-item-active')
       nextSlide(dots, currentSlide, 'dot-active')
    }
-   const startSlide = (timer = 1500) => {
+   const startSlide = (timer = 3500) => {
       interval = setInterval(autoSlide, timer)
    }
 

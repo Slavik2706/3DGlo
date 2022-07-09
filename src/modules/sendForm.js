@@ -21,6 +21,12 @@ const sendForm = ({ formId, someElem = [] }) => {
       }).then(res => res.json())
    }
 
+   const delayMessage = (ms) => {
+      return new Promise(
+         resolve => setTimeout(resolve, ms)
+      )
+   }
+
    const submitForm = () => {
       const formElements = form.querySelectorAll('input')
       const formData = new FormData(form)
@@ -57,6 +63,9 @@ const sendForm = ({ formId, someElem = [] }) => {
             .catch(error => {
                statusBlock.textContent = errorText
             })
+         delayMessage(3000).then(() => {
+            statusBlock.remove()
+         })
       } else {
          alert('Данные не валидны!!!')
       }

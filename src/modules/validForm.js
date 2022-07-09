@@ -6,6 +6,14 @@ const validForm = () => {
    const emailInputs = document.querySelectorAll('form [type=email]')
    const phoneInputs = document.querySelectorAll('form [type=tel]')
 
+   emailInputs.forEach((emailInput) => {
+      emailInput.setAttribute('required', true)
+   })
+
+   phoneInputs.forEach((phoneInput) => {
+      phoneInput.setAttribute('pattern', ".{11,}")
+   })
+
    calcInputs.forEach((calcInput) => {
       calcInput.addEventListener('input', (event) => {
          event.target.value = event.target.value.replace(/\D+/, "")
@@ -14,9 +22,20 @@ const validForm = () => {
    textInputs.forEach((textInput) => {
       textInput.addEventListener('input', (event) => {
          event.target.value = event.target.value.replace(/[^а-яА-Я\- ]/, "")
-         console.log(event.target.value)
       })
-
+   })
+   textInputs.forEach((textInput) => {
+      textInput.addEventListener('blur', (event) => {
+         let word = event.target.value
+         word = word.split('')
+         for (let i = 0; i < word.length; i++) {
+            if (i === 0) {
+               word[i] = word[i].toUpperCase()
+            }
+         }
+         word = word.join('')
+         event.target.value = word
+      })
    })
    emailInputs.forEach((emailInput) => {
       emailInput.addEventListener('input', (event) => {
